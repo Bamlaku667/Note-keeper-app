@@ -21,16 +21,16 @@ class NoteListState extends State<NoteList> {
         floatingActionButton: FloatingActionButton(
             onPressed: () {
               debugPrint("FAB pressed");
-              NavigateToNoteDetails();
+              NavigateToNoteDetails("Add Note");
             },
             child: Icon(Icons.add)));
   }
 
-  void NavigateToNoteDetails() {
+  void NavigateToNoteDetails(String title) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => NoteDetails(),
+        builder: (context) => NoteDetails(title: title,),
       ),
     );
   }
@@ -51,6 +51,7 @@ class NoteListState extends State<NoteList> {
               subtitle: Text("Another title"),
               onTap: () {
                 debugPrint("item $index tapped");
+                NavigateToNoteDetails("Edit Node");
               },
             ),
           );

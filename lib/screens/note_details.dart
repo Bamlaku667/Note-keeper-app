@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class NoteDetails extends StatefulWidget {
-  const NoteDetails({Key? key}) : super(key: key);
+  String title;
+   NoteDetails({Key? key, required this.title}) : super(key: key);
 
   @override
   State<NoteDetails> createState() => _NoteDetailsState();
@@ -20,7 +21,13 @@ class _NoteDetailsState extends State<NoteDetails> {
     
     return Scaffold(
         appBar: AppBar(
-          title: Text("Edit Note"),
+          leading: IconButton(
+            onPressed: () {
+              moveToLastScreen();
+            },
+            icon: Icon(Icons.arrow_back)
+          ),
+          title: Text(widget.title),
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -33,7 +40,7 @@ class _NoteDetailsState extends State<NoteDetails> {
                         child: Text(dropDownStrinItem),
                         value: dropDownStrinItem);
                   }).toList(),
-
+    
                   style: textStyle, 
                   value: 'low',
                   onChanged: (userSelectedValue) {
@@ -56,10 +63,10 @@ class _NoteDetailsState extends State<NoteDetails> {
                   ),
                 )
               ),
-
+    
               SizedBox(height: 10),
-
-
+    
+    
               TextField(
                 onChanged: (value) {
                   debugPrint("text $value is entered");
@@ -84,7 +91,7 @@ class _NoteDetailsState extends State<NoteDetails> {
                         child: Text("Save"),
                       ),
                     ),
-
+    
                     Container(width: 10,),
                     
                       Expanded(
@@ -99,5 +106,9 @@ class _NoteDetailsState extends State<NoteDetails> {
             ],
           ),
         ));
+  }
+
+  void moveToLastScreen() {
+    Navigator.pop(context);
   }
 }

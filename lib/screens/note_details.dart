@@ -1,0 +1,103 @@
+import 'package:flutter/material.dart';
+
+class NoteDetails extends StatefulWidget {
+  const NoteDetails({Key? key}) : super(key: key);
+
+  @override
+  State<NoteDetails> createState() => _NoteDetailsState();
+}
+
+class _NoteDetailsState extends State<NoteDetails> {
+  
+  TextEditingController _titleController = TextEditingController();
+  
+
+  static var _priorities = ['high', 'low' , 'medium '];
+  @override
+  Widget build(BuildContext context) {
+
+    var  textStyle = Theme.of(context).textTheme.titleMedium;
+    
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Edit Note"),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView(
+            children: [
+              ListTile(
+                title: DropdownButton(
+                  items: _priorities.map((String dropDownStrinItem) {
+                    return DropdownMenuItem<String>(
+                        child: Text(dropDownStrinItem),
+                        value: dropDownStrinItem);
+                  }).toList(),
+
+                  style: textStyle, 
+                  value: 'low',
+                  onChanged: (userSelectedValue) {
+                    setState(() {
+                      debugPrint('user selected $userSelectedValue');
+                    });
+                  }
+                ),
+              ),
+              TextField(
+                onChanged: (value) {
+                  debugPrint("text $value is entered");
+                },
+                controller: _titleController,
+                decoration: InputDecoration(
+                  hintText: "title",
+                  labelText: "title",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0)
+                  ),
+                )
+              ),
+
+              SizedBox(height: 10),
+
+
+              TextField(
+                onChanged: (value) {
+                  debugPrint("text $value is entered");
+                },
+                controller: _titleController,
+                decoration: InputDecoration(
+                  hintText: "Enter description",
+                  labelText: "Description",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0)
+                  ),
+                )
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: Text("Save"),
+                      ),
+                    ),
+
+                    Container(width: 10,),
+                    
+                      Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: Text("Delete"),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ));
+  }
+}

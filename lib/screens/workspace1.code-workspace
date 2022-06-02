@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../cyber_sql_injection"
+		},
+		{
+			"path": "../../../dart_practice"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "cyber_sql_injection"
+	}
+}
